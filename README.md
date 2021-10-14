@@ -1,5 +1,9 @@
 # Fredi Linalg API
 
+## Ссылки:
+* дизайн: https://www.figma.com/file/0wL7iCRecx7JDcIQmvUo3f/Firstlab?node-id=0%3A1
+
+
 ## Use cases:
 * **Преводаватель**
     * Вход в аккаунт
