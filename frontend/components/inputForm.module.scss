@@ -1,0 +1,6 @@
+.form {
+  > *:not(:first-child) {
+    /* Position */
+    margin-top: 37px;
+  }
+}
