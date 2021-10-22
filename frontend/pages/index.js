@@ -5,12 +5,11 @@ import styles from '../styles/Home.module.scss';
 
 import Layout from '../components/layout';
 import InputForm from '../components/inputForm';
+import Input from '../components/input';
 
 import { titleEnding } from '../lib/globals';
 
 export default function Home() {
-  const [errors, setErrors] = useState({ number: null, password: null, });
-
   function validateFields(fields) {
     let result = { status: "ok", details: {}, };
 
@@ -33,13 +32,11 @@ export default function Home() {
     </Head>
 
     <InputForm
-      inputs={{
-        number: { title: "Номер ИСУ", type: "number", className: styles["homepage-input"], },
-        password: { title: "Пароль", type: "password", className: styles["homepage-input"], },
-      }}
       onSubmit={validateFields}
       className={styles["homepage-form"]}
     >
+      <Input name="number" title="Номер ИСУ" type="number" className={styles["homepage-input"]} />
+      <Input name="password" title="Пароль" type="password" className={styles["homepage-input"]} />
     </InputForm>
   </Layout>;
 }

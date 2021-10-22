@@ -1,36 +1,16 @@
-import { createRef, useEffect, useState } from "react";
+import React, { createRef, useState } from "react";
 import clsx from "clsx";
 
 import styles from './inputForm.module.scss';
 
-import Input from "./input";
-
 export default function InputForm(props) {
-  const [state, setState] = useState({ content: [], refs: {}, });
   const [errors, setErrors] = useState(props.errors ?? {});
-
-  useEffect(() => {
-    let content = [];
-    let refs = {};
-    for (const [key, value] of Object.entries(props.inputs)) {
-      const currentRef = createRef();
-      refs[key] = currentRef;
-      content.push(<Input {...value} ref={currentRef} key={key} error={errors[key]} onInput={() => {
-        if (errors[key]) {
-          let newErrors = { ...errors, };
-          newErrors[key] = null;
-          setErrors(newErrors);
-        }
-      }} />)
-    }
-    setState({ content: content, refs: refs, });
-  }, [errors]);
 
   function submit(event) {
     event.preventDefault();
 
     let result = {};
-    for (const [key, ref] of Object.entries(state.refs)) {
+    for (const [key, ref] of Object.entries(refs)) {
       if (ref.current.value === "") {
         ref.current.focus();
         return;
@@ -41,7 +21,7 @@ export default function InputForm(props) {
     const response = props.onSubmit(result);
     /* response: { status: ["ok", "error"], details: { fieldName: errorText, }, } */
     if (response?.status === "ok") {
-      for (const [key, ref] of Object.entries(state.refs)) {
+      for (const [key, ref] of Object.entries(refs)) {
         ref.current.value = "";
       }
       document.activeElement.blur();
@@ -49,19 +29,36 @@ export default function InputForm(props) {
 
       props.onSuccess?.();
     } else if (response?.status === "error") {
-      let newErrors = {};
-      for (const [key, error] of Object.entries(response.details)) {
-        newErrors[key] = error;
-      }
-      setErrors(newErrors);
+      setErrors({ ...response.details, });
 
       props.onFailure?.();
     }
   }
 
+  let renderChildren = [];
+  let refs = {};
+  
+  React.Children.map(props.children, child => {
+    if (child.props.hasOwnProperty("name")) {  // only Input has a name property
+      const ref = createRef();
+      refs[child.props.name] = ref;
+      console.log(errors[child.props.name])
+      renderChildren.push(React.cloneElement(child, { ref: ref, key: child.props.name, error: errors[child.props.name], onInput: () => {
+        if (errors[child.props.name]) {
+          console.log("trigger")
+          let newErrors = { ...errors, };
+          newErrors[child.props.name] = null;
+          setErrors(newErrors);
+        }
+      }, }));
+    } else {  // submit button
+      renderChildren.push(React.cloneElement(child, { key: "submit-button", onClick: event => submit(event), }));
+    }
+  });
+
   return <form className={clsx(styles["form"], props.className)} onSubmit={submit}>
-    {state.content}
-    {props.children?.(submit) /* Accepts submit button as a child only */}
+    {console.log(renderChildren)}
+    {renderChildren}
     <input type="submit" style={{ visibility: "hidden", display: "none", }} />
   </form>;
 }

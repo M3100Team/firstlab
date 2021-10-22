@@ -74,6 +74,7 @@
       line-height: 15px;
       letter-spacing: 0.01em;
       color: #9A9A9A;
+      transition: color var(--tr-duration) var(--tr-function);
     }
   
     .input-error {
@@ -86,6 +87,7 @@
       text-align: right;
       letter-spacing: 0.01em;
       color: #FF6464;
+      transition: color var(--tr-duration) var(--tr-function);
     }
   }
 
@@ -95,7 +97,10 @@
     border-radius: 6px;
     outline: none;
     border: none;
-    border-bottom: 2px solid #EBEBEB;;
+    border-bottom: 2px solid #EBEBEB;
+    transition-property: border, background;
+    transition-duration: var(--tr-duration);
+    transition-timing-function: var(--tr-function);
 
     /* Content */
     height: 16px;
@@ -114,6 +119,7 @@
     &::placeholder {
       /* Text */
       color: #9A9A9A;
+      transition: color var(--tr-duration) var(--tr-function);
     }
   }
 }
