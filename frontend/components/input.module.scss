@@ -1,0 +1,119 @@
+.input-container {
+  /* Content */
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+
+  /* Position */
+  position: relative;
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type=number] {
+    -moz-appearance: textfield;
+  }
+
+  &.focused {
+    .input-header-container {
+      .input-title {
+        /* Text */
+        color: #75A3DA;
+      }
+    }
+
+    input {
+      /* Visual */
+      background: #EEF6FF;
+      border-color: #D3E7FF;
+
+      &::placeholder {
+        /* Text */
+        color: #75A3DA;
+      }
+    }
+  }
+
+  &.error {
+    .input-header-container {
+      .input-title {
+        /* Text */
+        color: #FC7A7A;
+      }
+    }
+
+    input {
+      /* Visual */
+      background: #FFE8E8;
+      border-color: #FFADAD;
+
+      &::placeholder {
+        /* Text */
+        color: #FC7A7A;
+      }
+    }
+  }
+
+  .input-header-container {
+    /* Content */
+    display: flex;
+    justify-content: space-between;
+
+    /* Position */
+    margin-bottom: 8px;
+
+    .input-title {
+      /* Text */
+      font-family: Inter;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 12px;
+      line-height: 15px;
+      letter-spacing: 0.01em;
+      color: #9A9A9A;
+    }
+  
+    .input-error {
+      /* Text */
+      font-family: Inter;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 15px;
+      text-align: right;
+      letter-spacing: 0.01em;
+      color: #FF6464;
+    }
+  }
+
+  input {
+    /* Visual */
+    background: #F3F3F3;
+    border-radius: 6px;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid #EBEBEB;;
+
+    /* Content */
+    height: 16px;
+    width: calc(100% - 27px);
+    padding: 12px 15px 11px 12px;
+
+    /* Text */
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: 0.02em;
+    color: #111111;
+
+    &::placeholder {
+      /* Text */
+      color: #9A9A9A;
+    }
+  }
+}

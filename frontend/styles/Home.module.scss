@@ -1,0 +1,11 @@
+form.homepage-form {
+  > *:not(:first-child) {
+    /* Position */
+    margin-top: 12px;
+  }
+
+  .homepage-input {
+    /* Content */
+    width: 237px;
+  }
+}
