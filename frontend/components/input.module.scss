@@ -29,6 +29,11 @@
       /* Visual */
       background: #EEF6FF;
       border-color: #D3E7FF;
+
+      &::placeholder {
+        /* Text */
+        color: #75A3DA;
+      }
     }
   }
 
@@ -44,6 +49,11 @@
       /* Visual */
       background: #FFE8E8;
       border-color: #FFADAD;
+
+      &::placeholder {
+        /* Text */
+        color: #FC7A7A;
+      }
     }
   }
 
@@ -100,5 +110,10 @@
     line-height: 17px;
     letter-spacing: 0.02em;
     color: #111111;
+
+    &::placeholder {
+      /* Text */
+      color: #9A9A9A;
+    }
   }
 }

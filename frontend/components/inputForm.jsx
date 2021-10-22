@@ -7,7 +7,7 @@ import Input from "./input";
 
 export default function InputForm(props) {
   const [state, setState] = useState({ content: [], refs: {}, });
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState(props.errors ?? {});
 
   useEffect(() => {
     let content = [];
