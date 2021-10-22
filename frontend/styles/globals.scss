@@ -1,3 +1,9 @@
+:root {
+  /* transition */
+  --tr-duration: 0.2s;
+  --tr-function: linear;
+}
+
 @font-face {
   font-family: Inter;
   src: url(../public/Inter-Regular.ttf);
