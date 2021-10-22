@@ -42,10 +42,8 @@ export default function InputForm(props) {
     if (child.props.hasOwnProperty("name")) {  // only Input has a name property
       const ref = createRef();
       refs[child.props.name] = ref;
-      console.log(errors[child.props.name])
       renderChildren.push(React.cloneElement(child, { ref: ref, key: child.props.name, error: errors[child.props.name], onInput: () => {
         if (errors[child.props.name]) {
-          console.log("trigger")
           let newErrors = { ...errors, };
           newErrors[child.props.name] = null;
           setErrors(newErrors);
@@ -57,7 +55,6 @@ export default function InputForm(props) {
   });
 
   return <form className={clsx(styles["form"], props.className)} onSubmit={submit}>
-    {console.log(renderChildren)}
     {renderChildren}
     <input type="submit" style={{ visibility: "hidden", display: "none", }} />
   </form>;
