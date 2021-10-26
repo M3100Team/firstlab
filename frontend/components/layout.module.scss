@@ -1,4 +1,24 @@
 .main {
   /* Content */
-  padding: 8px;
+  padding: 172px 59px 60px 59px;
+}
+
+.navbar {
+  /* Visual */
+  background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 80%, rgba(255, 255, 255, 0) 100%);;
+
+  /* Content */
+  width: 100%;
+  height: 112px;
+
+  /* Position */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.nav-logo {
+  /* Position */
+  margin-left: 38px;
 }

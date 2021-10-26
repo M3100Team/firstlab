@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Image from 'next/image';
 
 import styles from './layout.module.scss';
 
@@ -14,6 +15,11 @@ export default function Layout({ children }) {
         content="Лучшая платформа для выполнения работ онлайн"
       />
     </Head>
+    <nav className={styles["navbar"]}>
+      <div className={styles["nav-logo"]}>
+        <Image src="/static/images/logo.svg" alt="logo" width={116} height={80} />
+      </div>
+    </nav>
     <main className={styles.main}>
       {children}
     </main>
