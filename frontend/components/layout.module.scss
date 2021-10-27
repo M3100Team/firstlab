@@ -1,6 +1,6 @@
 .main {
   /* Content */
-  padding: 172px 59px 60px 59px;
+  padding: 162px 100px 60px 58px;
 }
 
 .navbar {
@@ -21,4 +21,37 @@
 .nav-logo {
   /* Position */
   margin-left: 38px;
+}
+
+.name-container {
+  /* Content */
+  display: flex;
+  flex-direction: column;
+
+  /* Position */
+  position: absolute;
+  right: 100px;
+  top: 24px;
+
+  > span:first-child {
+    /* Text */
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: right;
+    color: #111111;
+  }
+
+  > span:last-child {
+    /* Text */
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: right;
+    color: #11111180;
+  }
 }
