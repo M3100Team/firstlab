@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import Image from 'next/image';
 
 import styles from './layout.module.scss';
 
@@ -8,7 +7,7 @@ import { titleEnding } from '../lib/globals';
 function Navbar(props) {
   return <nav className={styles["navbar"]}>
     <div className={styles["nav-logo"]}>
-      <Image src="/static/images/logo.svg" alt="logo" width={116} height={80} />
+      <img src="/static/images/logo.svg" alt="logo" width={116} height={80} />
     </div>
     <div className={styles["name-container"]}>
       <span>Гусь Разведчик</span>
