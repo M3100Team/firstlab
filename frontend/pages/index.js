@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import clsx from 'clsx';
 
 import styles from '../styles/Home.module.scss';
@@ -9,6 +9,7 @@ import InputForm from '../components/inputForm';
 import Input from '../components/input';
 
 import { titleEnding, dueToTimeConverter } from '../lib/globals';
+import GlobalContext from '../lib/context';
 
 function MenuItem(props) {
   return <div className={clsx(styles["menu-item"], props.selected && styles["selected"])} onClick={() => props.onClick()}>
@@ -41,39 +42,45 @@ export default function Home() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(0);
 
-  function validateFields(fields) {
-    let result = { status: "ok", details: {}, };
-
-    /* field validation */
-    if (parseInt(fields.number) < 100000 || parseInt(fields.number) > 999999) {
-      result.status = "error";
-      result.details = { ...result.details, number: "Некорректный номер", };
-    }
-    if (fields.password.length < 6) {
-      result.status = "error";
-      result.details = { ...result.details, password: "Короче 6 символов", };
-    }
-
-    if (result.status === "ok") {
-      setLoggedIn(true);
-    }
-
-    return result;
-  }
+  const context = useContext(GlobalContext);
 
   return <Layout>
     <Head>
       <title>{"Главная страница" + titleEnding}</title>
     </Head>
 
-    {!loggedIn ? 
-      <InputForm
-        onSubmit={validateFields}
-        className={styles["homepage-form"]}
-      >
-        <Input name="number" title="Номер ИСУ" type="number" className={styles["homepage-input"]} />
-        <Input name="password" title="Пароль" type="password" className={styles["homepage-input"]} />
-      </InputForm> :
+    {!loggedIn ? <GlobalContext.Consumer>
+      {({ setUserData }) => {
+        return <InputForm
+          onSubmit={fields => {
+            let result = { status: "ok", details: {}, };
+
+            /* field validation */
+            if (parseInt(fields.number) < 100000 || parseInt(fields.number) > 999999) {
+              result.status = "error";
+              result.details = { ...result.details, number: "Некорректный номер", };
+            }
+            if (fields.password.length < 6) {
+              result.status = "error";
+              result.details = { ...result.details, password: "Короче 6 символов", };
+            }
+
+            if (result.status === "ok") {
+              if (fields.number === "334790") {
+                setUserData({ login: "Михаил Гуревич", group: "M3100", });
+              }
+              setLoggedIn(true);
+            }
+
+            return result;
+          }}
+          className={styles["homepage-form"]}
+        >
+          <Input name="number" title="Номер ИСУ" type="number" className={styles["homepage-input"]} />
+          <Input name="password" title="Пароль" type="password" className={styles["homepage-input"]} />
+        </InputForm>;
+      }}
+    </GlobalContext.Consumer> :
       <div className={styles["mainpage-content"]}>
         <div className={styles["menu"]}>
           <h2>Линейная алгерба I</h2>
