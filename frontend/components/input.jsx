@@ -1,5 +1,6 @@
 import { forwardRef, useState } from 'react';
 import clsx from 'clsx';
+import PropTypes from 'prop-types';
 
 import styles from './input.module.scss';
 
@@ -26,5 +27,15 @@ const Input = forwardRef((props, ref) => {
     />
   </div>
 })
+
+Input.propTypes = {
+  className: PropTypes.string,
+  error: PropTypes.string,
+  title: PropTypes.string,
+  type: PropTypes.string,
+  maxLength: PropTypes.number,
+  defaultValue: PropTypes.string,
+  onInput: PropTypes.func,
+}
 
 export default Input;

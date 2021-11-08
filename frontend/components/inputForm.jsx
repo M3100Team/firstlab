@@ -1,9 +1,11 @@
 import React, { createRef, useState } from "react";
 import clsx from "clsx";
+import PropTypes from 'prop-types';
 
 import styles from './inputForm.module.scss';
+import Input from "./input";
 
-export default function InputForm(props) {
+function InputForm(props) {
   const [errors, setErrors] = useState(props.errors ?? {});
 
   function submit(event) {
@@ -59,3 +61,11 @@ export default function InputForm(props) {
     <input type="submit" style={{ visibility: "hidden", display: "none", }} />
   </form>;
 }
+
+InputForm.propTypes = {
+  className: PropTypes.string,
+  errors: PropTypes.objectOf(PropTypes.string),
+  onSubmit: PropTypes.func,
+}
+
+export default InputForm;
