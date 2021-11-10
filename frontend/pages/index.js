@@ -7,6 +7,7 @@ import styles from '../styles/Home.module.scss';
 import Layout from '../components/layout';
 import InputForm from '../components/inputForm';
 import Input from '../components/input';
+import Dropdown from '../components/dropdown';
 
 import { titleEnding, dueToTimeConverter } from '../lib/globals';
 import GlobalContext from '../lib/context';
@@ -24,13 +25,13 @@ function WorkItem(props) {
     <div className={styles["work-info-container"]}>
       <div className={styles["info-property-container"]}>
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path fillRule="evenodd" clipRule="evenodd" d="M7.001 18C5.34448 18 4.0016 16.6569 4.0016 15V11H3.0018C2.11108 11 1.665 9.92286 2.29484 9.29289L9.29304 2.29289C9.68348 1.90237 10.3165 1.90237 10.707 2.29289L17.7052 9.29289C18.335 9.92286 17.8889 11 16.9982 11H15.9984V15C15.9984 16.6569 14.6555 18 12.999 18H7.001ZM10 4.41454L5.09242 9.32338L5.22529 9.41792C5.69757 9.78375 6.0016 10.3564 6.0016 11V15C6.0016 15.5524 6.44914 16 7.001 16L8 15.999V13C8 12.4477 8.44772 12 9 12H11C11.5523 12 12 12.4477 12 13V15.999L12.999 16C13.5509 16 13.9984 15.5524 13.9984 15V11C13.9984 10.2979 14.3602 9.68023 14.9076 9.32338L10 4.41454Z" fill="#111111" fillOpacity="0.5"/>
+          <path fillRule="evenodd" clipRule="evenodd" d="M7.001 18C5.34448 18 4.0016 16.6569 4.0016 15V11H3.0018C2.11108 11 1.665 9.92286 2.29484 9.29289L9.29304 2.29289C9.68348 1.90237 10.3165 1.90237 10.707 2.29289L17.7052 9.29289C18.335 9.92286 17.8889 11 16.9982 11H15.9984V15C15.9984 16.6569 14.6555 18 12.999 18H7.001ZM10 4.41454L5.09242 9.32338L5.22529 9.41792C5.69757 9.78375 6.0016 10.3564 6.0016 11V15C6.0016 15.5524 6.44914 16 7.001 16L8 15.999V13C8 12.4477 8.44772 12 9 12H11C11.5523 12 12 12.4477 12 13V15.999L12.999 16C13.5509 16 13.9984 15.5524 13.9984 15V11C13.9984 10.2979 14.3602 9.68023 14.9076 9.32338L10 4.41454Z" fill="#111111" fillOpacity="0.5" />
         </svg>
         <span>{props.type}</span>
       </div>
       <div className={styles["info-property-container"]}>
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path fillRule="evenodd" clipRule="evenodd" d="M5 2C5.55228 2 6 2.44772 6 3L5.99984 3.07035C7.17657 2.38961 8.54279 2 10 2C11.4576 2 12.8242 2.38983 14.0012 3.07093L14 3C14 2.44772 14.4477 2 15 2H17C17.5523 2 18 2.44772 18 3V5C18 5.55228 17.5523 6 17 6L16.9297 5.99984C17.6104 7.17657 18 8.54279 18 10C18 14.4183 14.4183 18 10 18C5.58172 18 2 14.4183 2 10C2 8.54279 2.38961 7.17657 3.07035 5.99984L3 6C2.44772 6 2 5.55228 2 5V3C2 2.44772 2.44772 2 3 2H5ZM10 4C6.68629 4 4 6.68629 4 10C4 13.3137 6.68629 16 10 16C13.3137 16 16 13.3137 16 10C16 6.68629 13.3137 4 10 4ZM10 6C10.5128 6 10.9355 6.38604 10.9933 6.88338L11 7V9.58579L12.7071 11.2929C13.0976 11.6834 13.0976 12.3166 12.7071 12.7071C12.3466 13.0676 11.7794 13.0953 11.3871 12.7903L11.2929 12.7071L9.29289 10.7071C9.13661 10.5508 9.0374 10.3481 9.00867 10.1314L9 10V7C9 6.44772 9.44772 6 10 6Z" fill="#111111" fillOpacity="0.5"/>
+          <path fillRule="evenodd" clipRule="evenodd" d="M5 2C5.55228 2 6 2.44772 6 3L5.99984 3.07035C7.17657 2.38961 8.54279 2 10 2C11.4576 2 12.8242 2.38983 14.0012 3.07093L14 3C14 2.44772 14.4477 2 15 2H17C17.5523 2 18 2.44772 18 3V5C18 5.55228 17.5523 6 17 6L16.9297 5.99984C17.6104 7.17657 18 8.54279 18 10C18 14.4183 14.4183 18 10 18C5.58172 18 2 14.4183 2 10C2 8.54279 2.38961 7.17657 3.07035 5.99984L3 6C2.44772 6 2 5.55228 2 5V3C2 2.44772 2.44772 2 3 2H5ZM10 4C6.68629 4 4 6.68629 4 10C4 13.3137 6.68629 16 10 16C13.3137 16 16 13.3137 16 10C16 6.68629 13.3137 4 10 4ZM10 6C10.5128 6 10.9355 6.38604 10.9933 6.88338L11 7V9.58579L12.7071 11.2929C13.0976 11.6834 13.0976 12.3166 12.7071 12.7071C12.3466 13.0676 11.7794 13.0953 11.3871 12.7903L11.2929 12.7071L9.29289 10.7071C9.13661 10.5508 9.0374 10.3481 9.00867 10.1314L9 10V7C9 6.44772 9.44772 6 10 6Z" fill="#111111" fillOpacity="0.5" />
         </svg>
         <span>{dueToTimeConverter(props.dueTo)}</span>
       </div>
@@ -51,7 +52,7 @@ export default function Home() {
 
     {!loggedIn ? <GlobalContext.Consumer>
       {({ setUserData }) => {
-        return <InputForm
+        return <><InputForm
           onSubmit={fields => {
             let result = { status: "ok", details: {}, };
 
@@ -78,7 +79,8 @@ export default function Home() {
         >
           <Input name="number" title="Номер ИСУ" type="number" className={styles["homepage-input"]} />
           <Input name="password" title="Пароль" type="password" className={styles["homepage-input"]} />
-        </InputForm>;
+        </InputForm>
+        <Dropdown title="Тест" options={["Тест 1", "Тест 2", "Тест 3", "Тест очень очень очень очень очень длинного текста",]} style={{ marginTop: "20px", }} /></>;
       }}
     </GlobalContext.Consumer> :
       <div className={styles["mainpage-content"]}>
