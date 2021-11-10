@@ -7,7 +7,7 @@ import styles from './input.module.scss';
 const Input = forwardRef((props, ref) => {
   const [focused, setFocused] = useState(false);
 
-  return <div className={clsx(styles["input-container"], props.className, focused && styles.focused, props.error && styles["error"])}>
+  return <div className={clsx(styles["input-container"], props.className, focused && styles.focused, props.error && styles["error"])} style={props.style}>
     <div className={styles["input-header-container"]}>
       <span className={styles["input-title"]}>{props.title}</span>
       <span className={styles["input-error"]}>{props.error}</span>
@@ -36,6 +36,7 @@ Input.propTypes = {
   maxLength: PropTypes.number,
   defaultValue: PropTypes.string,
   onInput: PropTypes.func,
+  style: PropTypes.objectOf(PropTypes.string),
 }
 
 export default Input;
