@@ -1,8 +1,9 @@
-# Fredi Linalg API
+# Geolin
+Сайт для сдачи лабораторных работ по Линейной Алгебре
 
 ## Ссылки:
-* дизайн: [https://www.figma.com](https://www.figma.com/file/0wL7iCRecx7JDcIQmvUo3f/Firstlab?node-id=0%3A1)
-* деплой фронтенда: [geolin.netlify.app](geolin.netlify.app)
+* дизайн: [www.figma.com](https://www.figma.com/file/0wL7iCRecx7JDcIQmvUo3f/Firstlab?node-id=0%3A1)
+* деплой фронтенда: [geolin.netlify.app](https://geolin.netlify.app)
 
 
 ## Use cases:
@@ -30,7 +31,7 @@
         * Ввод пароля
     * Список всех лаб
         * Дедлайн лаб
-        * Количество _решенных_ задач / задач
+        * Количество _решенных_ задач / всех задач
     * Экран отдельной лабы
         * Условие всех заданий
         * Кнопка прикрепления решения

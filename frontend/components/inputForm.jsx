@@ -1,9 +1,11 @@
 import React, { createRef, useState } from "react";
 import clsx from "clsx";
+import PropTypes from 'prop-types';
 
 import styles from './inputForm.module.scss';
+import Input from "./input";
 
-export default function InputForm(props) {
+function InputForm(props) {
   const [errors, setErrors] = useState(props.errors ?? {});
 
   function submit(event) {
@@ -19,7 +21,7 @@ export default function InputForm(props) {
     }
 
     const response = props.onSubmit(result);
-    /* response: { status: ["ok", "error"], details: { fieldName: errorText, }, } */
+    /* response: { status: ["ok", "error"], details: { fieldName: errorText, .., }, } */
     if (response?.status === "ok") {
       for (const [key, ref] of Object.entries(refs)) {
         ref.current.value = "";
@@ -54,8 +56,17 @@ export default function InputForm(props) {
     }
   });
 
-  return <form className={clsx(styles["form"], props.className)} onSubmit={submit}>
+  return <form className={clsx(styles["form"], props.className)} onSubmit={submit} style={props.style}>
     {renderChildren}
     <input type="submit" style={{ visibility: "hidden", display: "none", }} />
   </form>;
 }
+
+InputForm.propTypes = {
+  className: PropTypes.string,
+  errors: PropTypes.objectOf(PropTypes.string),
+  onSubmit: PropTypes.func, // { fieldName: value, ..., } => { status: ["ok", "error"], details: { fieldName: errorText, ..., }, }
+  style: PropTypes.objectOf(PropTypes.string),
+}
+
+export default InputForm;
