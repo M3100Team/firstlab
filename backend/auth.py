@@ -49,7 +49,7 @@ def authenticate_user(uid: int, password: str):
 def create_access_token(data: dict):
     to_encode = data.copy()
 
-    to_encode.update({"exp": ACCESS_TOKEN_EXPIRES})
+    to_encode.update({"exp": ACCESS_TOKEN_EXPIRES.total_seconds()})
     encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
 
     return encoded_jwt
