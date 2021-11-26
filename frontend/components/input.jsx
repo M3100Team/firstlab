@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import styles from './input.module.scss';
 
+// eslint-disable-next-line react/display-name
 const Input = forwardRef((props, ref) => {
   const [focused, setFocused] = useState(false);
 
@@ -24,6 +25,7 @@ const Input = forwardRef((props, ref) => {
       onInput={event => {
         props.onInput?.(event);
       }}
+      data_cy={props.data_cy}
     />
   </div>
 })

@@ -56,7 +56,7 @@ function InputForm(props) {
     }
   });
 
-  return <form className={clsx(styles["form"], props.className)} onSubmit={submit} style={props.style}>
+  return <form className={clsx(styles["form"], props.className)} onSubmit={submit} style={props.style} data_cy={props.data_cy}>
     {renderChildren}
     <input type="submit" style={{ visibility: "hidden", display: "none", }} />
   </form>;

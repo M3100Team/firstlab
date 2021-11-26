@@ -53,6 +53,7 @@ export default function Home() {
     {!loggedIn ? <GlobalContext.Consumer>
       {({ setUserData }) => {
         return <><InputForm
+          data_cy="login-form"
           onSubmit={fields => {
             let result = { status: "ok", details: {}, };
 
@@ -77,8 +78,8 @@ export default function Home() {
           }}
           className={styles["homepage-form"]}
         >
-          <Input name="number" title="Номер ИСУ" type="number" className={styles["homepage-input"]} />
-          <Input name="password" title="Пароль" type="password" className={styles["homepage-input"]} />
+          <Input name="number" title="Номер ИСУ" type="number" className={styles["homepage-input"]} data_cy="number-input" />
+          <Input name="password" title="Пароль" type="password" className={styles["homepage-input"]} data_cy="password-input" />
         </InputForm>
         <Dropdown title="Тест" options={["Тест 1", "Тест 2", "Тест 3", "Тест очень очень очень очень очень длинного текста",]} style={{ marginTop: "20px", }} /></>;
       }}
