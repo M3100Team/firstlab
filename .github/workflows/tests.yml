@@ -1,4 +1,4 @@
-name: test Geolin
+name: Test Geolin
 
 on: [push]
 
