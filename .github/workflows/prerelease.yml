@@ -3,11 +3,11 @@ name: Release Geolin
 on:
   push:
     branches:
-      - main
+      - feature/versioning
 
 jobs:
-  release:
-    name: "Release"
+  pre-release:
+    name: "Pre Release"
     runs-on: "ubuntu-latest"
 
     steps:
@@ -30,6 +30,6 @@ jobs:
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: ${{ steps.get_version.outputs.version_tag }}
+          automatic_release_tag: "${{ steps.get_version.outputs.version_tag }}-prerelease${{ steps.get_version.outputs.increment }}"
           prerelease: true
-          title: ${{ steps.get_version.outputs.version }}
+          title: "Prerelease ${{ steps.get_version.outputs.version_tag }}"
