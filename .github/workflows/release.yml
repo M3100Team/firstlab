@@ -16,6 +16,7 @@ jobs:
           fetch-depth: 0
           
       - name: Version
+        id: get_version
         uses: paulhatch/semantic-version@v4.0.2
         with:
           tag_prefix: "v"
@@ -24,10 +25,12 @@ jobs:
           format: "${major}.${minor}.${patch}"
           short_tags: true
           bump_each_commit: false
+
+      - run: echo "${{ steps.get_version.outputs.version_tag }}"
         
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: ${{ steps.Version.outputs.version_tag }}
+          automatic_release_tag: ${{ steps.get_version.outputs.version_tag }}
           prerelease: true
           title: "Dev Build"
