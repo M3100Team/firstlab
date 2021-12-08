@@ -16,9 +16,12 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: 16.x
+        working-directory: ./frontend
     - name: Install dependencies
+      working-directory: ./frontend
       run: npx ci
     - name: Install semantic-release extra plugins
+      working-directory: ./frontend
       run: npm install --save-dev @semantic-release/changelog @semantic-release/git         
     - name: Release
       working-directory: ./frontend
