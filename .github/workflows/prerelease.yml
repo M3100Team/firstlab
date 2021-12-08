@@ -1,0 +1,35 @@
+name: Release Geolin
+
+on:
+  push:
+    branches:
+      - feature/versioning
+
+jobs:
+  pre-release:
+    name: "Pre Release"
+    runs-on: "ubuntu-latest"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          
+      - name: Version
+        id: get_version
+        uses: paulhatch/semantic-version@v4.0.2
+        with:
+          tag_prefix: "v"
+          major_pattern: "(MAJOR)"
+          minor_pattern: "(MINOR)"
+          format: "${major}.${minor}.${patch}"
+          short_tags: true
+          bump_each_commit: false
+        
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "${{ steps.get_version.outputs.version_tag }}-prerelease${{ steps.get_version.outputs.increment }}"
+          prerelease: true
+          title: "Prerelease ${{ steps.get_version.outputs.version_tag }}"
