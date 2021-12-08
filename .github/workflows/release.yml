@@ -5,26 +5,14 @@ on:
     branches: [main, feature/versioning]
 
 jobs:
-  release:
-    name: Release
-    runs-on: ubuntu-latest
+  pre-release:
+    name: "Pre Release"
+    runs-on: "ubuntu-latest"
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Setup Node.js
-      uses: actions/setup-node@v1
-      with:
-        node-version: 16.x
-        working-directory: ./frontend
-    - name: Install dependencies
-      working-directory: ./frontend
-      run: npx ci
-    - name: Install semantic-release extra plugins
-      working-directory: ./frontend
-      run: npm install --save-dev @semantic-release/changelog @semantic-release/git         
-    - name: Release
-      working-directory: ./frontend
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: npx semantic-release
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          prerelease: true
+          title: "Dev Build"
