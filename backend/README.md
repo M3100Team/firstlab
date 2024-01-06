@@ -1,4 +1,4 @@
-# Fredi Linalg API Backend
+# Geolin backend
 
 ## Запуск
 ```bash
